@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nueva primera cita</title>
+<meta name="description" content="Plan para Yoyce.">
+<meta property="og:title" content="Nueva primera cita">
+<meta property="og:description" content="Plan para Yoyce ♡">
+<meta property="og:image" content="img/18ceroseis-terraza.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,100;1,9..144,300..700,100&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: fondo "aura" de luces difusas (apricot · magenta · azul cielo · lila) bajo tarjetas de vidrio.
+     Portada tipográfica, dos recomendaciones grandes, rejilla con el resto, respuesta al final. */
+  :root {
+    --bg: #fbf4f7;
+    --ink: #2b2140;
+    --muted: #776d8c;
+    --glass: rgba(255, 255, 255, .62);
+    --glass-strong: rgba(255, 255, 255, .82);
+    --glass-line: rgba(255, 255, 255, .9);
+    --magenta: #ff3d8f;
+    --apricot: #ffb27a;
+    --sky: #8fcdf5;
+    --lilac: #c9b6ff;
+    --chip: rgba(255, 95, 162, .12);
+    --on-accent: #ffffff;
+    --orb-a: #ffc69b;
+    --orb-b: #ff8fc0;
+    --orb-c: #a9dcff;
+    --orb-d: #d7c6ff;
+    --shadow: 0 24px 60px -30px rgba(120, 60, 120, .45);
+    --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+    --font-body: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "DM Mono", ui-monospace, Menlo, Consolas, monospace;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #140f22;
+      --ink: #f6eefa;
+      --muted: #b2a6c8;
+      --glass: rgba(34, 26, 54, .58);
+      --glass-strong: rgba(34, 26, 54, .8);
+      --glass-line: rgba(255, 255, 255, .1);
+      --magenta: #ff6aa9;
+      --apricot: #ffbd8c;
+      --sky: #8fcdf5;
+      --lilac: #b9a2ff;
+      --chip: rgba(255, 106, 169, .16);
+      --on-accent: #1a1028;
+      --orb-a: #8a4a2c;
+      --orb-b: #8e2a5c;
+      --orb-c: #24507a;
+      --orb-d: #4b3a8a;
+      --shadow: 0 24px 60px -30px rgba(0, 0, 0, .8);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #140f22; --ink: #f6eefa; --muted: #b2a6c8;
+    --glass: rgba(34, 26, 54, .58); --glass-strong: rgba(34, 26, 54, .8); --glass-line: rgba(255, 255, 255, .1);
+    --magenta: #ff6aa9; --apricot: #ffbd8c; --sky: #8fcdf5; --lilac: #b9a2ff;
+    --chip: rgba(255, 106, 169, .16); --on-accent: #1a1028;
+    --orb-a: #8a4a2c; --orb-b: #8e2a5c; --orb-c: #24507a; --orb-d: #4b3a8a;
+    --shadow: 0 24px 60px -30px rgba(0, 0, 0, .8);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 16px/1.6 var(--font-body);
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+
+  /* Aura */
+  .aura { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .aura span {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: .85;
+    animation: float 24s ease-in-out infinite alternate;
+  }
+  .aura .a { width: 55vmax; height: 55vmax; background: var(--orb-a); top: -18vmax; left: -14vmax; }
+  .aura .b { width: 46vmax; height: 46vmax; background: var(--orb-b); top: 6vmax; right: -16vmax; animation-duration: 30s; }
+  .aura .c { width: 50vmax; height: 50vmax; background: var(--orb-c); bottom: -20vmax; left: 10vmax; animation-duration: 34s; }
+  .aura .d { width: 34vmax; height: 34vmax; background: var(--orb-d); top: 38vh; left: 30vw; opacity: .6; animation-duration: 28s; }
+  .aura::after {
+    content: "";
+    position: absolute; inset: 0;
+    opacity: .18;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  @keyframes float {
+    to { transform: translate(6vmax, 4vmax) scale(1.08); }
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 960px;
+    margin: 0 auto;
+    padding-block: 72px 88px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    display: grid;
+    gap: 72px;
+  }
+
+  /* Portada */
+  .hero { display: grid; gap: 22px; justify-items: start; }
+  .kicker {
+    display: inline-flex; align-items: center; gap: 10px;
+    font: 500 13px/1 var(--font-mono);
+    letter-spacing: .16em; text-transform: uppercase;
+    color: var(--ink);
+    padding: 9px 16px;
+    border-radius: 999px;
+    background: var(--glass);
+    border: 1px solid var(--glass-line);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .kicker i { font-style: normal; color: var(--magenta); }
+  h1 {
+    margin: 0;
+    font: 400 clamp(56px, 12vw, 128px)/.9 var(--font-display);
+    font-variation-settings: "SOFT" 100, "opsz" 144;
+    letter-spacing: -.035em;
+    text-wrap: balance;
+  }
+  h1 em {
+    font-style: italic;
+    font-weight: 300;
+    background: linear-gradient(100deg, var(--magenta), var(--apricot) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding-right: .12em;
+    margin-right: -.06em;
+  }
+  .binary {
+    appearance: none;
+    position: relative;
+    display: grid;
+    margin: 0;
+    padding: 6px 0;
+    border: 0;
+    background: none;
+    color: var(--muted);
+    text-align: left;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .binary > span { grid-area: 1 / 1; transition: opacity .5s, filter .5s, transform .5s; }
+  .binary .code {
+    font: 400 clamp(13px, 2vw, 16px)/1.5 var(--font-mono);
+    letter-spacing: .06em;
+    overflow-wrap: anywhere;
+    opacity: .55;
+    filter: blur(.6px);
+  }
+  .binary:hover .code { opacity: .8; filter: none; }
+  .binary .plain {
+    align-self: center;
+    font: 400 italic clamp(26px, 4vw, 34px)/1 var(--font-display);
+    font-variation-settings: "SOFT" 100, "opsz" 48;
+    color: var(--magenta);
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+  }
+  .binary.is-open .code { opacity: 0; filter: blur(6px); }
+  .binary.is-open .plain { opacity: 1; transform: none; }
+  .binary:focus-visible { outline: 3px solid var(--magenta); outline-offset: 4px; border-radius: 8px; }
+  .promise {
+    margin: 0;
+    max-width: 30ch;
+    font: 300 italic clamp(24px, 3.6vw, 34px)/1.25 var(--font-display);
+    font-variation-settings: "SOFT" 100, "opsz" 48;
+    letter-spacing: -.01em;
+    text-wrap: pretty;
+  }
+  .promise .wink {
+    font-style: normal;
+    font-weight: 500;
+    font-size: .62em;
+    font-family: var(--font-body);
+    color: var(--magenta);
+    white-space: nowrap;
+    vertical-align: .2em;
+    margin-left: .2em;
+  }
+
+  .section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 18px; margin-bottom: 22px; }
+  .section-head h2 {
+    margin: 0;
+    font: 400 clamp(32px, 5vw, 44px)/1 var(--font-display);
+    font-variation-settings: "SOFT" 100, "opsz" 96;
+    letter-spacing: -.02em;
+  }
+  .section-head h2 em { font-style: italic; font-weight: 300; color: var(--magenta); }
+  .section-head p { margin: 0; color: var(--muted); font: 500 13px/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; }
+
+  /* Tarjetas de vidrio */
+  .card {
+    position: relative;
+    display: grid;
+    background: var(--glass);
+    border: 1px solid var(--glass-line);
+    border-radius: 30px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px) saturate(1.2);
+    -webkit-backdrop-filter: blur(18px) saturate(1.2);
+    overflow: hidden;
+    transition: box-shadow .25s, transform .25s;
+  }
+  .card.is-picked { box-shadow: 0 0 0 2px var(--magenta), var(--shadow); }
+  .media { position: relative; min-width: 0; }
+  .photos {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    height: 100%;
+  }
+  .photos::-webkit-scrollbar { display: none; }
+  .photos img { width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; scroll-snap-align: start; }
+  .photos:focus-visible { outline: 3px solid var(--magenta); outline-offset: -3px; }
+  .dots {
+    position: absolute; left: 0; right: 0; bottom: 14px;
+    display: flex; justify-content: center; gap: 6px;
+  }
+  .dots b { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.55); transition: background .2s, width .2s; }
+  .dots b.on { width: 20px; border-radius: 4px; background: #fff; }
+  .placeholder {
+    aspect-ratio: 4 / 3;
+    display: grid; place-content: center; text-align: center;
+    padding: 20px;
+    background:
+      radial-gradient(60% 70% at 25% 30%, var(--orb-a), transparent 70%),
+      radial-gradient(60% 70% at 80% 70%, var(--orb-c), transparent 70%),
+      radial-gradient(50% 60% at 60% 20%, var(--orb-b), transparent 70%);
+    color: var(--ink);
+    font: 300 italic 20px/1.3 var(--font-display);
+  }
+  .placeholder small { display: block; margin-top: 4px; font: 500 11px/1 var(--font-mono); font-style: normal; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+  .card-body { min-width: 0; padding: 22px 24px 24px; display: grid; gap: 14px; align-content: start; }
+  .opt { font: 500 12px/1 var(--font-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+  .card h3 {
+    margin: 0;
+    font: 500 30px/1 var(--font-display);
+    font-variation-settings: "SOFT" 100, "opsz" 72;
+    letter-spacing: -.02em;
+    overflow-wrap: anywhere;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    padding: 4px 11px; border-radius: 999px;
+    background: var(--chip); color: var(--ink);
+    font: 600 12.5px/1.5 var(--font-body);
+  }
+  .blurb { margin: 0; color: var(--muted); font-size: 15.5px; }
+  .facts { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 7px 16px; font-size: 14.5px; }
+  .facts dt { font: 500 11.5px/1.9 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .facts dd { margin: 0; min-width: 0; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+  .pending { color: var(--muted); font-style: italic; }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
+
+  /* Recomendaciones */
+  .tops { display: grid; gap: 28px; }
+  .featured { grid-template-columns: 1.15fr 1fr; }
+  .featured:nth-child(even) { grid-template-columns: 1fr 1.15fr; }
+  .featured:nth-child(even) .media { order: 2; }
+  .featured .media { min-height: 460px; }
+  .featured .photos { position: absolute; inset: 0; }
+  .featured .photos img { aspect-ratio: auto; }
+  .featured .card-body { padding: 32px 32px 30px; align-content: center; gap: 16px; }
+  .featured h3 { font-size: clamp(36px, 5vw, 50px); }
+  .badge {
+    position: absolute; z-index: 2; top: 16px; left: 16px;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 7px 13px; border-radius: 999px;
+    background: var(--magenta); color: var(--on-accent);
+    font: 500 11.5px/1 var(--font-mono); letter-spacing: .14em; text-transform: uppercase;
+  }
+  .note {
+    margin: 0;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: linear-gradient(120deg, rgba(255, 178, 122, .28), rgba(255, 61, 143, .16));
+    font: 400 italic 19px/1.35 var(--font-display);
+    font-variation-settings: "SOFT" 100, "opsz" 24;
+  }
+  .note small { display: block; margin-bottom: 2px; font: 500 10.5px/1.6 var(--font-mono); font-style: normal; letter-spacing: .16em; text-transform: uppercase; color: var(--magenta); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 22px; align-items: start; }
+
+  /* Botones */
+  .btn {
+    appearance: none;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 11px 18px;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+    background: var(--glass-strong);
+    color: var(--ink);
+    font: 600 14px/1 var(--font-body);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .15s, border-color .15s, color .15s, transform .15s;
+  }
+  .btn:hover { border-color: var(--magenta); transform: translateY(-1px); }
+  .btn:focus-visible { outline: 3px solid var(--magenta); outline-offset: 2px; }
+  .btn-pick[aria-pressed="true"] { background: var(--magenta); border-color: var(--magenta); color: var(--on-accent); }
+  .btn-primary {
+    background: linear-gradient(100deg, var(--magenta), #ff7a6b);
+    border: 0; color: #fff; padding: 16px 24px; font-size: 15.5px;
+  }
+  .btn-primary[aria-disabled="true"] { opacity: .4; pointer-events: none; }
+
+  /* Respuesta */
+  .reply {
+    display: grid; gap: 16px;
+    padding: 34px;
+    border-radius: 30px;
+    background: var(--glass);
+    border: 1px solid var(--glass-line);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+  .reply h2 {
+    margin: 0;
+    font: 400 clamp(32px, 5vw, 44px)/1 var(--font-display);
+    font-variation-settings: "SOFT" 100, "opsz" 96;
+    letter-spacing: -.02em;
+  }
+  .reply h2 em { font-style: italic; font-weight: 300; color: var(--magenta); }
+  #picked-summary { margin: 0; color: var(--muted); }
+  #picked-summary.picked-line { color: var(--ink); font: 400 italic 22px/1.3 var(--font-display); }
+  label { font: 500 12px/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  textarea {
+    width: 100%; min-height: 96px; margin-top: 8px;
+    padding: 14px 16px; border-radius: 18px;
+    border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+    background: var(--glass-strong); color: var(--ink);
+    font: 400 16px/1.5 var(--font-body); resize: vertical;
+  }
+  textarea:focus-visible { outline: 3px solid var(--magenta); outline-offset: 1px; }
+
+  [hidden] { display: none !important; }
+
+  /* Cita agendada */
+  .booked {
+    display: grid; gap: 10px;
+    padding: 18px 18px 16px;
+    border-radius: 20px;
+    background: linear-gradient(120deg, rgba(255, 178, 122, .3), rgba(255, 61, 143, .18));
+  }
+  .booked strong {
+    font: 500 italic 26px/1.05 var(--font-display);
+    font-variation-settings: "SOFT" 100, "opsz" 48;
+    color: var(--magenta);
+  }
+  .booked p { margin: 0; font-size: 15px; }
+  .booked .warn { color: var(--muted); font-size: 13.5px; }
+
+  /* Confirmación */
+  dialog {
+    width: min(460px, calc(100vw - 32px));
+    max-height: calc(100vh - 32px);
+    padding: 0;
+    border: 1px solid var(--glass-line);
+    border-radius: 28px;
+    background: var(--glass-strong);
+    color: var(--ink);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+  dialog::backdrop { background: rgba(30, 15, 40, .35); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .confirm { display: grid; gap: 16px; padding: 28px; }
+  .confirm h2 {
+    margin: 0;
+    font: 400 34px/1.05 var(--font-display);
+    font-variation-settings: "SOFT" 100, "opsz" 72;
+    letter-spacing: -.02em;
+    overflow-wrap: anywhere;
+  }
+  .confirm h2 em { font-style: italic; font-weight: 300; color: var(--magenta); }
+  .confirm-hours { margin: -6px 0 0; color: var(--muted); font-size: 14.5px; }
+  .field { display: grid; gap: 8px; }
+  .field textarea { min-height: 72px; margin: 0; }
+  input[type="date"] {
+    width: 100%;
+    padding: 12px 16px; border-radius: 16px;
+    border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+    background: var(--glass-strong); color: var(--ink);
+    font: 500 16px/1.4 var(--font-body);
+  }
+  input[type="date"]:focus-visible { outline: 3px solid var(--magenta); outline-offset: 1px; }
+  .confirm-error { margin: 0; color: var(--magenta); font-size: 14px; font-weight: 600; }
+  .btn:disabled { opacity: .6; cursor: progress; }
+
+  footer { text-align: center; display: grid; gap: 8px; }
+  footer .sign { font: 300 italic 22px/1.2 var(--font-display); }
+  footer .sources { font-size: 12.5px; color: var(--muted); max-width: 60ch; margin: 0 auto; }
+  footer .sources a { color: inherit; }
+
+  @media (max-width: 760px) {
+    .featured, .featured:nth-child(even) { grid-template-columns: 1fr; }
+    .featured:nth-child(even) .media { order: 0; }
+    .featured .media { min-height: 0; }
+    .featured .photos { position: static; }
+    .featured .photos img { aspect-ratio: 4 / 3.4; }
+    .featured .card-body { padding: 24px 22px; }
+  }
+  @media (max-width: 460px) {
+    .wrap { padding-block: 48px 64px; gap: 56px; }
+    .card-body { padding: 20px; }
+    .reply { padding: 24px 20px; }
+    .aura span { filter: blur(60px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="aura" aria-hidden="true"><span class="a"></span><span class="b"></span><span class="c"></span><span class="d"></span></div>
+
+<main class="wrap">
+  <header class="hero">
+    <span class="kicker"><i>♡</i> Plan para Yoyce</span>
+    <h1>Nueva <em>primera</em> cita</h1>
+    <button class="binary" id="binary" type="button" aria-expanded="false" aria-label="Mensaje en binario. Tócalo para traducirlo.">
+      <span class="code" aria-hidden="true">01010100 01100101 00100000 01100001 01101101 01101111</span>
+      <span class="plain" aria-hidden="true">Te amo</span>
+    </button>
+    <p class="promise">Porque el binario no salió bien años atrás, esta vez no habrá mensajes encriptados <span class="wink">(o tal vez sí)</span></p>
+  </header>
+
+  <section aria-labelledby="rec-title">
+    <div class="section-head">
+      <h2 id="rec-title">Mis <em>favoritas</em></h2>
+      <p>Recomendación personal</p>
+    </div>
+    <div class="tops" id="featured"></div>
+  </section>
+
+  <section aria-labelledby="more-title">
+    <div class="section-head">
+      <h2 id="more-title">Más <em>opciones</em></h2>
+      <p>Por si se te antoja otra cosa</p>
+    </div>
+    <div class="grid" id="options"></div>
+  </section>
+
+  <dialog id="confirm" aria-labelledby="confirm-title">
+    <form id="confirm-form" class="confirm">
+      <span class="opt">Antes de agendar</span>
+      <h2 id="confirm-title">¿Vamos a <em id="confirm-place"></em>?</h2>
+      <p class="confirm-hours" id="confirm-hours"></p>
+      <div class="field">
+        <label for="day">¿Qué día te queda?</label>
+        <input type="date" id="day" required>
+      </div>
+      <div class="field">
+        <label for="note">¿Algo que quieras agregar? (opcional)</label>
+        <textarea id="note" placeholder="Ej. tengo antojo de algo dulce"></textarea>
+      </div>
+      <p class="confirm-error" id="confirm-error" hidden>Elige un día para poder agendar.</p>
+      <div class="actions">
+        <button class="btn btn-primary" type="submit" id="confirm-yes">Sí, vamos ♡</button>
+        <button class="btn" type="button" id="confirm-no">Mejor otro</button>
+      </div>
+    </form>
+  </dialog>
+
+  <footer>
+    <span class="sign">para Yoyce ♡</span>
+    <span class="sources">Fotos y datos de Google (vía <a href="https://menutoeat.com/18ceroseis/" target="_blank" rel="noopener">MenuToEat</a>), la <a href="https://restauranteyamamoto.com/" target="_blank" rel="noopener">página de Yamamoto</a> y las redes de cada lugar. Los horarios pueden cambiar.</span>
+  </footer>
+</main>
+
+<script>
+  // Número de WhatsApp al que llega la respuesta, con lada de país y sin espacios (ej. "5219981234567").
+  // Si se deja vacío, WhatsApp le pedirá a ella elegir el contacto.
+  const WHATSAPP = "";
+
+  // Llave pública de Web3Forms (la misma del formulario de contacto de AURA). El aviso llega al correo
+  // con el que se registró esa llave. Si se deja vacía, no se manda ningún aviso.
+  const WEB3FORMS_KEY = "fd818c8d-712f-48e1-8881-645e7b406f89";
+
+  // Para agregar o corregir datos basta con editar esta lista. Los que tienen top: true salen como recomendación.
+  const PLACES = [
+    {
+      name: "18CEROSEIS",
+      top: true,
+      note: "No he ido, pero se ve muy lindo",
+      tags: ["Café y brunch", "★ 4.6 · 1,312 reseñas"],
+      blurb: "Café frente a la Catedral de Cancún, con terraza llena de lucecitas. Barra clásica, cold brew, carajillos, frappés y comida rica: chilaquiles, enchiladas y brunch.",
+      address: "Av. Puertos 8, 77508 Cancún, Q.R. (frente a la Catedral)",
+      hours: "Todos los días 8:00 – 22:00",
+      phone: "998 331 8918",
+      photos: ["img/18ceroseis-terraza.jpg", "img/18ceroseis-brunch.jpg"],
+      maps: "https://maps.app.goo.gl/3GWG9gWgt2qqk6Tm7"
+    },
+    {
+      name: "Yamamoto",
+      top: true,
+      note: "",
+      tags: ["Restaurante japonés", "★ 4.9 en OpenTable"],
+      blurb: "El restaurante japonés más antiguo de Cancún. Sushi fresco, cocina tradicional, coctelería y postres muy bonitos. Vestimenta smart casual y se puede reservar.",
+      address: "Av. Uxmal 31, SM 3, Centro, 77500 Cancún, Q.R.",
+      hours: "Lun a sáb 13:30 – 23:00 · Dom 13:30 – 20:00",
+      phone: "998 734 3520",
+      photos: ["img/yamamoto-yakisoba.jpg", "img/yamamoto-coctel.jpg", "img/yamamoto-postre.jpg"],
+      maps: "https://maps.app.goo.gl/oFr67xPmBumFd12LA"
+    },
+    {
+      name: "Cafetería Nicté",
+      tags: ["Barra de espresso", "★ 5.0 · 1 reseña"],
+      blurb: "",
+      address: "C. 1, Supermanzana 66, 77510 Cancún, Q.R.",
+      hours: "Todos los días 8:00 – 21:00",
+      phone: "",
+      photos: [],
+      maps: "https://maps.app.goo.gl/LS3CaD4u3rxyrCsf8"
+    },
+    {
+      name: "GALU",
+      tags: ["Cafetería y pastelería", "★ 4.9 · 265 reseñas"],
+      blurb: "Pastelería artesanal con toque argentino: cheesecake, marquise, alfajores y su famoso frappé de taro. Su lema: «El amor tiene sabor».",
+      address: "Av. Andrés Quintana Roo, SM 44, Mz 4, Lt 26, 77506 Cancún, Q.R.",
+      hours: "Todos los días desde las 9:00 (cierra entre 21:00 y 22:00)",
+      phone: "998 763 1444",
+      photos: ["img/galu-pastel.jpg", "img/galu-latte.jpg"],
+      maps: "https://maps.app.goo.gl/Scn9rMqP7MGMmUKm9"
+    },
+    {
+      name: "2D Sugart Café",
+      tags: ["Café temático", "★ 4.5 · 133 reseñas", "$100 – 300"],
+      blurb: "El primer café 2D de Cancún: todo parece dibujado como de caricatura, con rincones inspirados en Francia y Japón. Café, chapatas, pan y postres.",
+      address: "Av. la Luna, SM 44, Mz 6, Lt 10, Local A, 77506 Cancún, Q.R.",
+      hours: "Lun a sáb 8:30 – 21:15 · Dom cerrado",
+      phone: "998 894 0715",
+      photos: [],
+      maps: "https://maps.app.goo.gl/YicVUjf1U3aAFvFf7"
+    },
+    {
+      name: "Coffe Garden",
+      tags: ["Cafetería", "★ 4.9 · 7 reseñas", "$100 – 200"],
+      blurb: "",
+      address: "228, Cancún, Q.R.",
+      hours: "Dom a vie 18:30 – 22:00 · Sáb cerrado",
+      phone: "",
+      photos: [],
+      maps: "https://maps.app.goo.gl/EmPdA8crktBxasEx9"
+    },
+    {
+      name: "Memorias Cafetería",
+      tags: ["Barra de espresso", "★ 5.0 · 5 reseñas"],
+      blurb: "",
+      address: "Dentro de Galaxias del Sol, 77518 Cancún, Q.R.",
+      hours: "Vie y lun 19:00 – 23:00 · Sáb y dom 19:00 – 23:30 · Mar a jue cerrado",
+      phone: "",
+      photos: [],
+      maps: "https://maps.app.goo.gl/9Gp4AmP9AE639YEA8"
+    }
+  ];
+
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  function media(p, featured) {
+    const badge = featured ? `<span class="badge">♡ Top</span>` : "";
+    if (!p.photos.length) {
+      return `<div class="media">${badge}<div class="placeholder">${esc(p.name)}<small>fotos en Google Maps</small></div></div>`;
+    }
+    const dots = p.photos.length > 1
+      ? `<div class="dots" aria-hidden="true">${p.photos.map((_, k) => `<b${k ? "" : ` class="on"`}></b>`).join("")}</div>`
+      : "";
+    return `<div class="media">${badge}
+      <div class="photos" tabindex="0" aria-label="Fotos de ${esc(p.name)}, desliza para ver más">
+        ${p.photos.map((src, k) => `<img src="${src}" alt="Foto ${k + 1} de ${esc(p.name)}" loading="${featured ? "eager" : "lazy"}">`).join("")}
+      </div>${dots}</div>`;
+  }
+
+  function card(p, i, featured) {
+    return `
+    <article class="card${featured ? " featured" : ""}" data-i="${i}">
+      ${media(p, featured)}
+      <div class="card-body">
+        <span class="opt">Opción ${i + 1}</span>
+        <h3>${esc(p.name)}</h3>
+        <div class="tags">${p.tags.map(t => `<span class="tag">${esc(t)}</span>`).join("")}</div>
+        ${p.note ? `<p class="note"><small>Nota personal</small>${esc(p.note)}</p>` : ""}
+        ${p.blurb ? `<p class="blurb">${esc(p.blurb)}</p>` : ""}
+        <dl class="facts">
+          <dt>Dónde</dt><dd>${esc(p.address)}</dd>
+          <dt>Horario</dt><dd>${p.hours ? esc(p.hours) : `<span class="pending">Revisar en Maps</span>`}</dd>
+          ${p.phone ? `<dt>Tel.</dt><dd>${esc(p.phone)}</dd>` : ""}
+        </dl>
+        <div class="actions">
+          <a class="btn" href="${p.maps}" target="_blank" rel="noopener">Ver en Maps ↗</a>
+          <button class="btn btn-pick" type="button" data-i="${i}">Vamos ahí</button>
+        </div>
+        <div class="booked" role="status" hidden></div>
+      </div>
+    </article>`;
+  }
+
+  const order = PLACES.map((p, i) => ({ p, i }));
+  document.getElementById("featured").innerHTML = order.filter(o => o.p.top).map(o => card(o.p, o.i, true)).join("");
+  document.getElementById("options").innerHTML = order.filter(o => !o.p.top).map(o => card(o.p, o.i, false)).join("");
+
+  // Puntitos del carrusel de fotos
+  document.querySelectorAll(".photos").forEach(strip => {
+    const dots = strip.parentElement.querySelectorAll(".dots b");
+    if (!dots.length) return;
+    strip.addEventListener("scroll", () => {
+      const k = Math.round(strip.scrollLeft / strip.clientWidth);
+      dots.forEach((d, j) => d.classList.toggle("on", j === k));
+    }, { passive: true });
+  });
+
+  // El binario se traduce al tocarlo
+  const binary = document.getElementById("binary");
+  binary.addEventListener("click", () => {
+    const open = binary.classList.toggle("is-open");
+    binary.setAttribute("aria-expanded", String(open));
+    binary.setAttribute("aria-label", open ? "Te amo" : "Mensaje en binario. Tócalo para traducirlo.");
+  });
+
+  // Agendar: confirmación previa, aviso por correo y mensaje en la tarjeta elegida
+  const dialog = document.getElementById("confirm");
+  const form = document.getElementById("confirm-form");
+  const dayInput = document.getElementById("day");
+  const noteInput = document.getElementById("note");
+  const yesBtn = document.getElementById("confirm-yes");
+  const errorMsg = document.getElementById("confirm-error");
+  const STORE = "nueva-primera-cita";
+  let pending = null;
+
+  const todayISO = () => {
+    const d = new Date();
+    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+    return d.toISOString().slice(0, 10);
+  };
+  const fmtDay = iso => new Date(iso + "T12:00").toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long" });
+  const cardOf = i => document.querySelector(`.card[data-i="${i}"]`);
+
+  function showBooked(i, day, mailFailed) {
+    document.querySelectorAll(".card").forEach(c => {
+      const on = Number(c.dataset.i) === i;
+      c.classList.toggle("is-picked", on);
+      c.querySelector(".btn-pick").hidden = on;
+      c.querySelector(".booked").hidden = !on;
+    });
+    const p = PLACES[i];
+    const wa = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`¡Hola! Ya quedó: ${p.name}, el ${fmtDay(day)} ♡ Mi dirección es: `)}`;
+    cardOf(i).querySelector(".booked").innerHTML = `
+      <strong>¡Cita agendada! ♡</strong>
+      <p>${esc(p.name)}, el ${esc(fmtDay(day))}. Solo falta que le compartas tu dirección a Ignacio para verse después de que salga del trabajo.</p>
+      ${mailFailed ? `<p class="warn">No se pudo avisar a Ignacio por correo; mejor mándale mensaje.</p>` : ""}
+      <div class="actions">
+        <a class="btn btn-primary" href="${wa}" target="_blank" rel="noopener">Mandarle mi dirección</a>
+        <button class="btn btn-change" type="button">Cambiar de lugar</button>
+      </div>`;
+  }
+
+  function clearBooked() {
+    document.querySelectorAll(".card").forEach(c => {
+      c.classList.remove("is-picked");
+      c.querySelector(".btn-pick").hidden = false;
+      c.querySelector(".booked").hidden = true;
+    });
+    try { localStorage.removeItem(STORE); } catch {}
+  }
+
+  async function notify(i, day, note) {
+    if (!WEB3FORMS_KEY) return true;
+    const p = PLACES[i];
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `Yoyce agendó la cita: ${p.name} ♡`,
+          from_name: "Nueva primera cita",
+          Lugar: p.name,
+          Dia: fmtDay(day),
+          Horario: p.hours || "Revisar en Maps",
+          Direccion: p.address,
+          Nota: note || "(sin nota)",
+          Maps: p.maps
+        })
+      });
+      const data = await res.json();
+      return Boolean(data.success);
+    } catch {
+      return false;
+    }
+  }
+
+  function openConfirm(i) {
+    pending = i;
+    document.getElementById("confirm-place").textContent = PLACES[i].name;
+    document.getElementById("confirm-hours").textContent = PLACES[i].hours ? "Horario: " + PLACES[i].hours : "";
+    dayInput.min = todayISO();
+    errorMsg.hidden = true;
+    dialog.showModal();
+  }
+
+  document.addEventListener("click", e => {
+    const pick = e.target.closest(".btn-pick");
+    if (pick) { openConfirm(Number(pick.dataset.i)); return; }
+    if (e.target.closest(".btn-change")) clearBooked();
+  });
+
+  document.getElementById("confirm-no").addEventListener("click", () => dialog.close());
+
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    if (!dayInput.value) { errorMsg.hidden = false; dayInput.focus(); return; }
+    const i = pending, day = dayInput.value, note = noteInput.value.trim();
+    yesBtn.disabled = true;
+    yesBtn.textContent = "Agendando…";
+    const sent = await notify(i, day, note);
+    yesBtn.disabled = false;
+    yesBtn.textContent = "Sí, vamos ♡";
+    dialog.close();
+    showBooked(i, day, !sent);
+    try { localStorage.setItem(STORE, JSON.stringify({ i, day })); } catch {}
+    cardOf(i).scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+
+  // Si ya había agendado antes en este teléfono, se lo recordamos
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORE) || "null");
+    if (saved && PLACES[saved.i]) showBooked(saved.i, saved.day, false);
+  } catch {}
+</script>
+</body>
+</html>
